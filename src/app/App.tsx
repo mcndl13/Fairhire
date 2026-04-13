@@ -319,6 +319,18 @@ export default function App() {
                 description="Candidates with access to AI tools and knowledge of how to game algorithmic systems have significant advantages over others."
               />
             </div>
+
+            <p
+              className="mx-auto mt-8 max-w-4xl px-4 text-center text-sm sm:mt-10 sm:text-base md:mt-12 md:text-lg"
+              style={{
+                color: "#94A3B8",
+                lineHeight: 1.7,
+                fontStyle: "italic",
+              }}
+            >
+              Overall, the impact of AI in hiring reduces trust for candidates
+              and affects access to jobs and future opportunities
+            </p>
           </motion.div>
         </div>
       </section>
