@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { LogoIcon } from "./components/LogoIcon";
+import fairhireQr from "../assets/fairhire-qr.png";
 import {
   AlertTriangle,
   Users,
@@ -161,106 +162,121 @@ export default function App() {
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 pt-20"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-6 sm:gap-8"
+            className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,22rem)] lg:gap-14"
           >
-            <LogoIcon className="w-24 h-24 sm:w-32 sm:h-32" variant="full-color" />
+            <div className="flex flex-col items-center gap-6 text-center sm:gap-8 lg:items-start lg:text-left">
+              <LogoIcon
+                className="w-24 h-24 sm:w-32 sm:h-32"
+                variant="full-color"
+              />
 
-            <div className="space-y-3 sm:space-y-4">
-              <h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
-                style={{
-                  fontWeight: 700,
-                  color: "#0F172A",
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                FairHire Alliance
-              </h1>
+              <div className="space-y-3 sm:space-y-4">
+                <h1
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
+                  style={{
+                    fontWeight: 700,
+                    color: "#0F172A",
+                    lineHeight: 1.1,
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  FairHire Alliance
+                </h1>
+                <p
+                  className="max-w-3xl px-4 text-xl sm:text-2xl md:text-3xl lg:px-0"
+                  style={{
+                    color: "#475569",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  Ensuring Fair and Transparent AI Hiring
+                </p>
+              </div>
+
               <p
-                className="max-w-3xl px-4 text-xl sm:text-2xl md:text-3xl"
+                className="max-w-2xl px-4 text-base sm:text-lg md:text-xl lg:px-0"
                 style={{
-                  color: "#475569",
-                  lineHeight: 1.5,
+                  color: "#64748B",
+                  lineHeight: 1.7,
                 }}
               >
-                Ensuring Fair and Transparent AI Hiring
+                An independent certification body bridging the gap between
+                candidates and companies to provide trustworthy hiring practices
+                rooted in fairness, transparency, and accountability.
               </p>
+
+              <div className="flex w-full flex-col gap-3 px-4 sm:flex-row sm:px-0 lg:w-auto">
+                <button
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-900 text-white rounded-lg flex items-center justify-center gap-2 text-base sm:text-lg"
+                  style={{
+                    fontWeight: 600,
+                  }}
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+                <button
+                  className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-900 text-blue-900 rounded-lg text-base sm:text-lg"
+                  style={{
+                    fontWeight: 600,
+                  }}
+                >
+                  For Students
+                </button>
+              </div>
+
+              <div className="flex w-full max-w-2xl flex-wrap items-center justify-center gap-6 border-t border-slate-200 pt-8 sm:gap-10 sm:pt-12 lg:justify-start">
+                <div className="flex items-center gap-2">
+                  <Scale className="w-5 h-5 text-blue-900" />
+                  <span
+                    className="text-sm sm:text-base"
+                    style={{
+                      color: "#64748B",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Fair Assessment
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Eye className="w-5 h-5 text-blue-900" />
+                  <span
+                    className="text-sm sm:text-base"
+                    style={{
+                      color: "#64748B",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Full Transparency
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-blue-900" />
+                  <span
+                    className="text-sm sm:text-base"
+                    style={{
+                      color: "#64748B",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Independent Audits
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <p
-              className="max-w-2xl px-4 text-base sm:text-lg md:text-xl"
-              style={{
-                color: "#64748B",
-                lineHeight: 1.7,
-              }}
-            >
-              An independent certification body bridging the gap between
-              candidates and companies to provide trustworthy hiring practices
-              rooted in fairness, transparency, and accountability.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 w-full sm:w-auto px-4">
-              <button
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-900 text-white rounded-lg flex items-center justify-center gap-2 text-base sm:text-lg"
-                style={{
-                  fontWeight: 600,
-                }}
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-              </button>
-              <button
-                className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-900 text-blue-900 rounded-lg text-base sm:text-lg"
-                style={{
-                  fontWeight: 600,
-                }}
-              >
-                For Students
-              </button>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-12 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-slate-200 w-full max-w-2xl">
-              <div className="flex items-center gap-2">
-                <Scale className="w-5 h-5 text-blue-900" />
-                <span
-                  className="text-sm sm:text-base"
-                  style={{
-                    color: "#64748B",
-                    fontWeight: 500,
-                  }}
-                >
-                  Fair Assessment
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Eye className="w-5 h-5 text-blue-900" />
-                <span
-                  className="text-sm sm:text-base"
-                  style={{
-                    color: "#64748B",
-                    fontWeight: 500,
-                  }}
-                >
-                  Full Transparency
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-blue-900" />
-                <span
-                  className="text-sm sm:text-base"
-                  style={{
-                    color: "#64748B",
-                    fontWeight: 500,
-                  }}
-                >
-                  Independent Audits
-                </span>
+            <div className="mx-auto w-full max-w-[18rem] sm:max-w-[20rem] lg:mx-0 lg:max-w-[22rem]">
+              <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.1)] backdrop-blur-sm sm:p-5">
+                <img
+                  src={fairhireQr}
+                  alt="FairHire Alliance QR code"
+                  className="w-full h-auto rounded-2xl"
+                />
               </div>
             </div>
           </motion.div>
