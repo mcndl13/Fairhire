@@ -489,7 +489,7 @@ export default function App() {
               <SolutionCard
                 icon={<BookOpen className="w-6 h-6 text-green-700" />}
                 title="Student Education"
-                description="Mandatory AI hiring literacy courses that help candidates understand the systems evaluating them and how to demonstrate their true capabilities."
+                description="AI hiring literacy courses that help candidates understand the evaluation system and how to demonstrate true capabilities."
               />
               <SolutionCard
                 icon={<Building2 className="w-6 h-6 text-green-700" />}
@@ -529,10 +529,10 @@ export default function App() {
               <FlowCard
                 number="1"
                 icon={<Users className="w-8 h-8 text-blue-700" />}
-                title="Students"
+                title="Applicants"
                 process="Education & Resources"
                 outcome="Fair Applications"
-                description="Students complete AI hiring literacy training and gain tools to navigate certified hiring processes."
+                description="Applicants complete AI hiring literacy training and gain tools to navigate certified hiring processes."
               />
               <FlowCard
                 number="2"
@@ -606,9 +606,8 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <h3
-                className="mb-8"
+                className="mb-6 sm:mb-8 text-2xl sm:text-3xl md:text-4xl"
                 style={{
-                  fontSize: "2rem",
                   fontWeight: 700,
                   color: "#0F172A",
                 }}
