@@ -545,7 +545,47 @@ export default function App() {
                   color: "#0F172A",
                 }}
               >
-                Benefits
+                Benefits for Companies
+              </h3>
+
+              <div className="space-y-6">
+                <BenefitItem
+                  icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
+                  title="Marketing Strategies"
+                  description="Allowed to use FairHire in job posts, career fairs, etc."
+                />
+                <BenefitItem
+                  icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
+                  title="Enhanced Workplace Innovation through Diversity"
+                  description="Benefit from diversity in culture and genders"
+                />
+                <BenefitItem
+                  icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
+                  title="Certified Ethical Talent Acquisition"
+                  description="Talent acquisition is gonna be better"
+                />
+                <BenefitItem
+                  icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
+                  title=""
+                  description=""
+                />
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3
+                className="mb-8"
+                style={{
+                  fontSize: "2rem",
+                  fontWeight: 700,
+                  color: "#0F172A",
+                }}
+              >
+                Benefits for Applicants
               </h3>
 
               <div className="space-y-6">
@@ -573,7 +613,7 @@ export default function App() {
             </motion.div>
 
             {/* Transparency: Limitations */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -626,7 +666,7 @@ export default function App() {
                 continuous improvement, stakeholder engagement, and transparent
                 reporting.
               </p>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
