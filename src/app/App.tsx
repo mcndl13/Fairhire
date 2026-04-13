@@ -10,31 +10,38 @@ import {
   Scale,
   Eye,
   BookOpen,
+  Menu,
+  X,
 } from "lucide-react";
+import { useState } from "react";
 
 export default function App() {
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="bg-white" style={{ fontFamily: "Inter, sans-serif" }}>
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-slate-200 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <LogoIcon className="w-10 h-10" variant="full-color" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LogoIcon className="w-8 h-8 sm:w-10 sm:h-10" variant="full-color" />
             <span
               style={{
-                fontSize: "1.25rem",
+                fontSize: "1rem",
                 fontWeight: 700,
                 color: "#1E293B",
               }}
+              className="sm:text-xl"
             >
               FairHire Alliance
             </span>
           </div>
-          <div className="flex items-center gap-8">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8">
             <a
               href="#problem"
               style={{
@@ -76,7 +83,77 @@ export default function App() {
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6 text-slate-900" />
+            ) : (
+              <Menu className="w-6 h-6 text-slate-900" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden border-t border-slate-200 bg-white"
+          >
+            <div className="px-4 py-4 space-y-4">
+              <a
+                href="#problem"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-2"
+                style={{
+                  fontSize: "1rem",
+                  color: "#64748B",
+                  fontWeight: 500,
+                }}
+              >
+                The Problem
+              </a>
+              <a
+                href="#solution"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-2"
+                style={{
+                  fontSize: "1rem",
+                  color: "#64748B",
+                  fontWeight: 500,
+                }}
+              >
+                Our Solution
+              </a>
+              <a
+                href="#how-it-works"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block py-2"
+                style={{
+                  fontSize: "1rem",
+                  color: "#64748B",
+                  fontWeight: 500,
+                }}
+              >
+                How It Works
+              </a>
+              <button
+                className="w-full px-5 py-3 bg-blue-900 text-white rounded-lg flex items-center justify-center gap-2"
+                style={{
+                  fontSize: "1rem",
+                  fontWeight: 600,
+                }}
+              >
+                Get Certified
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -84,19 +161,19 @@ export default function App() {
         style={{ opacity: heroOpacity, scale: heroScale }}
         className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 pt-20"
       >
-        <div className="max-w-6xl mx-auto px-6 py-20 text-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center gap-8"
+            className="flex flex-col items-center gap-6 sm:gap-8"
           >
-            <LogoIcon className="w-32 h-32" variant="full-color" />
+            <LogoIcon className="w-24 h-24 sm:w-32 sm:h-32" variant="full-color" />
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
                 style={{
-                  fontSize: "4rem",
                   fontWeight: 700,
                   color: "#0F172A",
                   lineHeight: 1.1,
@@ -106,9 +183,8 @@ export default function App() {
                 FairHire Alliance
               </h1>
               <p
-                className="max-w-3xl"
+                className="max-w-3xl px-4 text-xl sm:text-2xl md:text-3xl"
                 style={{
-                  fontSize: "1.5rem",
                   color: "#475569",
                   lineHeight: 1.5,
                 }}
@@ -118,9 +194,8 @@ export default function App() {
             </div>
 
             <p
-              className="max-w-2xl"
+              className="max-w-2xl px-4 text-base sm:text-lg md:text-xl"
               style={{
-                fontSize: "1.125rem",
                 color: "#64748B",
                 lineHeight: 1.7,
               }}
@@ -130,21 +205,19 @@ export default function App() {
               rooted in fairness, transparency, and accountability.
             </p>
 
-            <div className="flex gap-4 mt-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4 w-full sm:w-auto px-4">
               <button
-                className="px-8 py-4 bg-blue-900 text-white rounded-lg flex items-center gap-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-900 text-white rounded-lg flex items-center justify-center gap-2 text-base sm:text-lg"
                 style={{
-                  fontSize: "1.0625rem",
                   fontWeight: 600,
                 }}
               >
                 Learn More
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
-                className="px-8 py-4 border-2 border-blue-900 text-blue-900 rounded-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-900 text-blue-900 rounded-lg text-base sm:text-lg"
                 style={{
-                  fontSize: "1.0625rem",
                   fontWeight: 600,
                 }}
               >
@@ -152,12 +225,12 @@ export default function App() {
               </button>
             </div>
 
-            <div className="flex items-center gap-12 mt-12 pt-12 border-t border-slate-200">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-12 mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-slate-200 w-full max-w-2xl">
               <div className="flex items-center gap-2">
                 <Scale className="w-5 h-5 text-blue-900" />
                 <span
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "0.875rem",
                     color: "#64748B",
                     fontWeight: 500,
                   }}
@@ -168,8 +241,8 @@ export default function App() {
               <div className="flex items-center gap-2">
                 <Eye className="w-5 h-5 text-blue-900" />
                 <span
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "0.875rem",
                     color: "#64748B",
                     fontWeight: 500,
                   }}
@@ -180,8 +253,8 @@ export default function App() {
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-blue-900" />
                 <span
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "0.875rem",
                     color: "#64748B",
                     fontWeight: 500,
                   }}
@@ -195,8 +268,8 @@ export default function App() {
       </motion.section>
 
       {/* Problem Section */}
-      <section id="problem" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="problem" className="py-12 sm:py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -204,10 +277,10 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <AlertTriangle className="w-8 h-8 text-red-600" />
+              <AlertTriangle className="w-6 h-6 sm:w-8 sm:h-8 text-red-600" />
               <h2
+                className="text-3xl sm:text-4xl md:text-5xl"
                 style={{
-                  fontSize: "2.5rem",
                   fontWeight: 700,
                   color: "#0F172A",
                 }}
@@ -217,9 +290,8 @@ export default function App() {
             </div>
 
             <p
-              className="mb-12 max-w-3xl"
+              className="mb-8 sm:mb-12 max-w-3xl text-lg sm:text-xl md:text-2xl"
               style={{
-                fontSize: "1.25rem",
                 color: "#475569",
                 lineHeight: 1.7,
               }}
@@ -229,7 +301,7 @@ export default function App() {
               AI tools rather than those most qualified.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
               <ProblemCard
                 title="Black Box Opacity"
                 description="AI hiring systems operate without transparency. Candidates are judged by systems they don't understand, using rules they cannot see, question, or appeal."
@@ -252,8 +324,8 @@ export default function App() {
       </section>
 
       {/* Why It Matters */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-12 sm:py-16 md:py-24 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -261,9 +333,8 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="mb-6"
+              className="mb-6 sm:mb-8 text-3xl sm:text-4xl md:text-5xl"
               style={{
-                fontSize: "2.5rem",
                 fontWeight: 700,
                 color: "#0F172A",
               }}
@@ -271,14 +342,14 @@ export default function App() {
               Why It Matters
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <Users className="w-6 h-6 text-blue-900" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-900" />
                 </div>
                 <h3
+                  className="text-lg sm:text-xl"
                   style={{
-                    fontSize: "1.25rem",
                     fontWeight: 600,
                     color: "#0F172A",
                   }}
@@ -286,8 +357,8 @@ export default function App() {
                   Sociotechnical System
                 </h3>
                 <p
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "1rem",
                     color: "#64748B",
                     lineHeight: 1.7,
                   }}
@@ -298,12 +369,12 @@ export default function App() {
               </div>
 
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <Scale className="w-6 h-6 text-orange-900" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <Scale className="w-5 h-5 sm:w-6 sm:h-6 text-orange-900" />
                 </div>
                 <h3
+                  className="text-lg sm:text-xl"
                   style={{
-                    fontSize: "1.25rem",
                     fontWeight: 600,
                     color: "#0F172A",
                   }}
@@ -311,8 +382,8 @@ export default function App() {
                   Inequality at Scale
                 </h3>
                 <p
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "1rem",
                     color: "#64748B",
                     lineHeight: 1.7,
                   }}
@@ -323,12 +394,12 @@ export default function App() {
               </div>
 
               <div className="space-y-3">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                  <AlertTriangle className="w-6 h-6 text-red-900" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                  <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-red-900" />
                 </div>
                 <h3
+                  className="text-lg sm:text-xl"
                   style={{
-                    fontSize: "1.25rem",
                     fontWeight: 600,
                     color: "#0F172A",
                   }}
@@ -336,8 +407,8 @@ export default function App() {
                   Efficiency Over Fairness
                 </h3>
                 <p
+                  className="text-sm sm:text-base"
                   style={{
-                    fontSize: "1rem",
                     color: "#64748B",
                     lineHeight: 1.7,
                   }}
@@ -353,8 +424,8 @@ export default function App() {
       </section>
 
       {/* Solution Section */}
-      <section id="solution" className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="solution" className="py-12 sm:py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -362,10 +433,10 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <Shield className="w-8 h-8 text-green-700" />
+              <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-green-700" />
               <h2
+                className="text-3xl sm:text-4xl md:text-5xl"
                 style={{
-                  fontSize: "2.5rem",
                   fontWeight: 700,
                   color: "#0F172A",
                 }}
@@ -375,9 +446,8 @@ export default function App() {
             </div>
 
             <p
-              className="mb-12 max-w-3xl"
+              className="mb-8 sm:mb-12 max-w-3xl text-lg sm:text-xl md:text-2xl"
               style={{
-                fontSize: "1.25rem",
                 color: "#475569",
                 lineHeight: 1.7,
               }}
@@ -387,7 +457,7 @@ export default function App() {
               stakeholders.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <SolutionCard
                 icon={<BookOpen className="w-6 h-6 text-green-700" />}
                 title="Student Education"
@@ -409,8 +479,8 @@ export default function App() {
       </section>
 
       {/* How It Works */}
-      <section id="how-it-works" className="py-24 bg-blue-50">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="how-it-works" className="py-12 sm:py-16 md:py-24 bg-blue-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -418,9 +488,8 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="mb-12 text-center"
+              className="mb-8 sm:mb-12 text-center text-3xl sm:text-4xl md:text-5xl"
               style={{
-                fontSize: "2.5rem",
                 fontWeight: 700,
                 color: "#0F172A",
               }}
@@ -428,7 +497,7 @@ export default function App() {
               How It Works
             </h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <FlowCard
                 number="1"
                 icon={<Users className="w-8 h-8 text-blue-700" />}
@@ -459,9 +528,9 @@ export default function App() {
       </section>
 
       {/* Benefits & Commitment */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16">
+      <section className="py-12 sm:py-16 md:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-16">
             {/* Benefits */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -470,9 +539,8 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <h3
-                className="mb-8"
+                className="mb-6 sm:mb-8 text-2xl sm:text-3xl md:text-4xl"
                 style={{
-                  fontSize: "2rem",
                   fontWeight: 700,
                   color: "#0F172A",
                 }}
@@ -512,9 +580,8 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <h3
-                className="mb-8"
+                className="mb-6 sm:mb-8 text-2xl sm:text-3xl md:text-4xl"
                 style={{
-                  fontSize: "2rem",
                   fontWeight: 700,
                   color: "#0F172A",
                 }}
@@ -523,9 +590,8 @@ export default function App() {
               </h3>
 
               <p
-                className="mb-6"
+                className="mb-6 text-sm sm:text-base"
                 style={{
-                  fontSize: "1rem",
                   color: "#64748B",
                   lineHeight: 1.7,
                 }}
@@ -549,9 +615,8 @@ export default function App() {
               </div>
 
               <p
-                className="mt-6"
+                className="mt-6 text-sm sm:text-base"
                 style={{
-                  fontSize: "0.9375rem",
                   color: "#475569",
                   lineHeight: 1.7,
                   fontStyle: "italic",
@@ -567,8 +632,8 @@ export default function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+      <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -576,9 +641,8 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="mb-6"
+              className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
               style={{
-                fontSize: "2.5rem",
                 fontWeight: 700,
                 lineHeight: 1.2,
               }}
@@ -587,9 +651,8 @@ export default function App() {
             </h2>
 
             <p
-              className="mb-10"
+              className="mb-8 sm:mb-10 text-lg sm:text-xl md:text-2xl"
               style={{
-                fontSize: "1.25rem",
                 opacity: 0.9,
                 lineHeight: 1.7,
               }}
@@ -599,20 +662,18 @@ export default function App() {
               help.
             </p>
 
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <button
-                className="px-8 py-4 bg-white text-blue-900 rounded-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-white text-blue-900 rounded-lg text-base sm:text-lg"
                 style={{
-                  fontSize: "1.0625rem",
                   fontWeight: 600,
                 }}
               >
                 Get Certified
               </button>
               <button
-                className="px-8 py-4 border-2 border-white text-white rounded-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-white text-white rounded-lg text-base sm:text-lg"
                 style={{
-                  fontSize: "1.0625rem",
                   fontWeight: 600,
                 }}
               >
@@ -624,23 +685,23 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-slate-900 text-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between">
+      <footer className="py-8 sm:py-12 bg-slate-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <LogoIcon className="w-10 h-10" variant="white" />
-              <div>
+              <LogoIcon className="w-8 h-8 sm:w-10 sm:h-10" variant="white" />
+              <div className="text-center sm:text-left">
                 <p
+                  className="text-base sm:text-lg"
                   style={{
-                    fontSize: "1.125rem",
                     fontWeight: 600,
                   }}
                 >
                   FairHire Alliance
                 </p>
                 <p
+                  className="text-sm"
                   style={{
-                    fontSize: "0.875rem",
                     opacity: 0.7,
                   }}
                 >
@@ -649,18 +710,18 @@ export default function App() {
               </div>
             </div>
 
-            <div>
+            <div className="text-center sm:text-right">
               <p
+                className="text-sm"
                 style={{
-                  fontSize: "0.875rem",
                   opacity: 0.7,
                 }}
               >
                 A project by ENGR 392 students at Concordia University
               </p>
               <p
+                className="text-sm"
                 style={{
-                  fontSize: "0.875rem",
                   opacity: 0.5,
                   marginTop: "0.25rem",
                 }}
@@ -686,12 +747,11 @@ function ProblemCard({
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
-      className="p-6 bg-red-50 border-l-4 border-red-600 rounded-r-lg"
+      className="p-4 sm:p-6 bg-red-50 border-l-4 border-red-600 rounded-r-lg"
     >
       <h3
-        className="mb-3"
+        className="mb-2 sm:mb-3 text-lg sm:text-xl"
         style={{
-          fontSize: "1.25rem",
           fontWeight: 600,
           color: "#DC2626",
         }}
@@ -699,8 +759,8 @@ function ProblemCard({
         {title}
       </h3>
       <p
+        className="text-sm sm:text-base"
         style={{
-          fontSize: "1rem",
           color: "#7F1D1D",
           lineHeight: 1.6,
         }}
@@ -724,15 +784,14 @@ function SolutionCard({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.2 }}
-      className="p-6 bg-green-50 rounded-lg border border-green-200"
+      className="p-4 sm:p-6 bg-green-50 rounded-lg border border-green-200"
     >
-      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
         {icon}
       </div>
       <h3
-        className="mb-3"
+        className="mb-2 sm:mb-3 text-lg sm:text-xl"
         style={{
-          fontSize: "1.25rem",
           fontWeight: 600,
           color: "#065F46",
         }}
@@ -740,8 +799,8 @@ function SolutionCard({
         {title}
       </h3>
       <p
+        className="text-sm sm:text-base"
         style={{
-          fontSize: "1rem",
           color: "#047857",
           lineHeight: 1.6,
         }}
@@ -768,26 +827,24 @@ function FlowCard({
   description: string;
 }) {
   return (
-    <div className="bg-white p-8 rounded-lg border border-blue-200">
-      <div className="flex items-center gap-3 mb-4">
+    <div className="bg-white p-5 sm:p-8 rounded-lg border border-blue-200">
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
         <div
-          className="w-10 h-10 bg-blue-900 text-white rounded-full flex items-center justify-center"
+          className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-900 text-white rounded-full flex items-center justify-center text-base sm:text-lg"
           style={{
-            fontSize: "1.125rem",
             fontWeight: 700,
           }}
         >
           {number}
         </div>
-        <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
           {icon}
         </div>
       </div>
 
       <h3
-        className="mb-2"
+        className="mb-2 text-xl sm:text-2xl"
         style={{
-          fontSize: "1.5rem",
           fontWeight: 700,
           color: "#1E40AF",
         }}
@@ -796,9 +853,8 @@ function FlowCard({
       </h3>
 
       <p
-        className="mb-3"
+        className="mb-3 text-sm sm:text-base"
         style={{
-          fontSize: "1rem",
           color: "#3B82F6",
           fontWeight: 500,
         }}
@@ -806,11 +862,11 @@ function FlowCard({
         {process}
       </p>
 
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-3 sm:mb-4">
         <ArrowRight className="w-4 h-4 text-green-600" />
         <p
+          className="text-base sm:text-lg"
           style={{
-            fontSize: "1.0625rem",
             fontWeight: 600,
             color: "#059669",
           }}
@@ -820,8 +876,8 @@ function FlowCard({
       </div>
 
       <p
+        className="text-sm sm:text-base"
         style={{
-          fontSize: "0.9375rem",
           color: "#64748B",
           lineHeight: 1.6,
         }}
@@ -842,12 +898,12 @@ function BenefitItem({
   description: string;
 }) {
   return (
-    <div className="flex gap-4">
-      <div className="mt-1">{icon}</div>
+    <div className="flex gap-3 sm:gap-4">
+      <div className="mt-1 flex-shrink-0">{icon}</div>
       <div>
         <h4
+          className="text-base sm:text-lg"
           style={{
-            fontSize: "1.125rem",
             fontWeight: 600,
             color: "#0F172A",
             marginBottom: "0.5rem",
@@ -856,8 +912,8 @@ function BenefitItem({
           {title}
         </h4>
         <p
+          className="text-sm sm:text-base"
           style={{
-            fontSize: "1rem",
             color: "#64748B",
             lineHeight: 1.6,
           }}
@@ -877,10 +933,10 @@ function LimitationItem({
   description: string;
 }) {
   return (
-    <div className="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
+    <div className="p-3 sm:p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
       <h4
+        className="text-sm sm:text-base"
         style={{
-          fontSize: "1rem",
           fontWeight: 600,
           color: "#92400E",
           marginBottom: "0.5rem",
@@ -889,8 +945,8 @@ function LimitationItem({
         {title}
       </h4>
       <p
+        className="text-sm"
         style={{
-          fontSize: "0.9375rem",
           color: "#78350F",
           lineHeight: 1.6,
         }}
