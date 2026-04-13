@@ -551,23 +551,23 @@ export default function App() {
               <div className="space-y-6">
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Marketing Strategies"
-                  description="Allowed to use FairHire in job posts, career fairs, etc."
+                  title="Strategic Brand Authority"
+                  description="Leverage the FairHire seal on job posts, career fairs, and social media to showcase your commitment to ethical hiring."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Enhanced Workplace Innovation through Diversity"
-                  description="Benefit from diversity in culture and genders"
+                  title="Inclusive Innovation Growth"
+                  description="Unlock higher performance by integrating FHA diversity guidelines that foster a representative and multifaceted workforce."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
                   title="Certified Ethical Talent Acquisition"
-                  description="Talent acquisition is gonna be better"
+                  description="Optimize your hiring pipeline with ethical standards that cut through AI noise to find truly qualified, high-integrity candidates."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title=""
-                  description=""
+                  title="Algorithmic Risk Mitigation"
+                  description="Protect your brand from AI bias and legal liabilities by implementing our verified human-in-the-loop oversight standards."
                 />
               </div>
             </motion.div>
@@ -591,23 +591,23 @@ export default function App() {
               <div className="space-y-6">
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Reduces Bias"
-                  description="Diversity guidelines and human oversight counter algorithmic discrimination."
+                  title="Algorithmic Integrity"
+                  description="Counteract systemic discrimination through a robust framework of human oversight and verified diversity guidelines."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Increases Transparency"
-                  description="Candidates receive clear feedback and understand how decisions are made."
+                  title="Candidate Trust & Clarity"
+                  description="Build lasting rapport with applicants by providing actionable feedback and a transparent, explainable selection process."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Empowers Students"
-                  description="Education programs level the playing field and build AI literacy."
+                  title="Equitable Talent Empowerment"
+                  description="Bridge the AI literacy gap with educational programs that level the playing field for the next generation of professionals."
                 />
                 <BenefitItem
                   icon={<CheckCircle2 className="w-5 h-5 text-green-700" />}
-                  title="Holds Companies Accountable"
-                  description="Regular audits and certification standards ensure ongoing compliance."
+                  title="Verified Ethical Compliance"
+                  description="Demonstrate your commitment to fairness through rigorous audits and industry-leading certification standards."
                 />
               </div>
             </motion.div>
